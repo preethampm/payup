@@ -29,11 +29,13 @@ mongoose.connect('mongodb://localhost:27017/paytm')
     }
   })
 
+  const User = mongoose.model('User', userSchema);
+
   const accountSchema = new mongoose.Schema({
     userId : {
       type: mongoose.Schema.Types.ObjectId, //this is how you type objectid
       required: true,
-      ref : UserModel //reference
+      ref : User//reference
     },
     balance : {
       type: Number,
@@ -41,9 +43,8 @@ mongoose.connect('mongodb://localhost:27017/paytm')
     }
   })
 
-  const UserModel = mongoose.model('User', userSchema);
-  const accuntModel = mongoose.model('Balance', accountSchema)
+  
+  const Account = mongoose.model('Account', accountSchema);
   module.exports= {
-    UserModel,
-    accuntModel
+    User, Account
   };
